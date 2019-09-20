@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -168,7 +168,6 @@ var referer='';
 					if(data == "false"){
 							$("#loginError").text("아이디와 비밀번호가 일치하지 않습니다.").css("color", "red");	
 					}else{
-						alert("로그인 성공");
 						if(referer.includes('logout')||referer.includes('memberForm'))
 							referer="http://70.12.113.165:8000/festival/main";
 						location.href=referer;
