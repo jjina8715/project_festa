@@ -1,4 +1,4 @@
-
+﻿
 <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -194,7 +194,6 @@ html, body, header {
 				<c:if test='${!empty resultlist }'>
 				<div class="container">
 				<h4>현재 ${resultlist.currentPage }페이지 총 ${ resultlist.total }개의 검색결과</h4>
-				<%-- <h4>${resultlist.totalPages}, ${resultlist.startPage}, ${resultlist.endPage}</h4> --%>
 					<table class="table table-stripaed" style="text-align: center; border: 1px solid #dddddd; height: 70%">
 						<c:forEach var="vo" items="${resultlist.list }">
 							<tr onclick="location.href='http://localhost:8000/festival/detail?fid=${vo.fid}'">
