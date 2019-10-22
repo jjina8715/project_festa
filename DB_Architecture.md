@@ -58,4 +58,3 @@ create table review(
     FOREIGN KEY (fid) REFERENCES festival (fid), 
     FOREIGN KEY (mid) REFERENCES memberinfo (mid)
 )
-
