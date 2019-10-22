@@ -20,7 +20,7 @@ create table festival(
     type varchar2(20),
     fcontent varchar2(900),
     hostinfo varchar2(200)
-)
+    )
 create table memberinfo(
     mid varchar2(40) primary key,
     pw varchar2(32),
