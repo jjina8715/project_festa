@@ -1,59 +1,61 @@
-# DB Architecture
+<img src="festa_db.png" alt="festa_db" style="zoom: 80%;" />
 
-table festival{
-  fid int pk
-  name varchar(30)
-  place varchar(50)
-  lat float
-  lng float
-  opendate datetime
-  type varchar(10)
-  content varchar(255)
-  hostinfo varchar(50)
-  image BLOB
-}
-TABLE festaimg{
-    fid int 
-    image BLOB
-}
-table member{
-  mid varchar(20) pk
-  pw varchar(20)
-  email varchar(30)
-  phone varchar(20)
-}
-table review{
-  mid varchar(20)
-  content varchar(150)
-  fid int
-  writedate datetime
-  grade int
-}
-TABLE notice{
- nid int pk
- ncontent varchar(255)
- uploaddate datetime
- writer varchar(20)
- cnt int
-}
-table myfesta{
-    mid varchar(20)
+create table festadate(
+    opendate date, 
+    closedate date,
+    fid int,
+    FOREIGN KEY (fid) REFERENCES festival (fid)
+)
+create table festaimg(
+    fid int,
+    image_name varchar2(6),
+    FOREIGN KEY (fid) REFERENCES festival (fid)
+)
+create table festival(
+    fid int primary key,
+    name varchar2(100),
+    place varchar2(90),
+    lat float,
+    lng float,
+    type varchar2(20),
+    fcontent varchar2(900),
+    hostinfo varchar2(200)
+)
+create table memberinfo(
+    mid varchar2(40) primary key,
+    pw varchar2(32),
+    email varchar2(60),
+    phone varchar2(60),
+    status varchar2(18)
+)
+create table myfesta(
+    mid varchar2(40),
     fid int
-}
-ref{
-  review.fid > festival.fid
-}
-ref{
-  review.mid > member.mid
-}
-ref{
-  myfesta.mid > member.mid
-}
-ref{
-  myfesta.fid > festival.fid
-}
-ref{ 
-  festaimg.fid > festival.fid
-}
+)
+create table notice(
+    nid int primary key,
+    ncontent varchar2(600),
+    uploaddate varchar2(30),
+    cnt int,
+    title varchar2(60),
+    FOREIGN KEY (mid) REFERENCES memberinfo (mid)
+)
+create table report(
+    report_id int primary key,
+    reason varchar2(300),
+    mid varchar2(40),
+    review_id int,
+    FOREIGN KEY (review_id) REFERENCES review (review_id), 
+    FOREIGN KEY (mid) REFERENCES memberinfo (mid)
+)
+create table review(
+    review_id int primary key,
+    mid varchar2(40),
+    fid int,
+    rcontent varchar2(300),
+    writedate date,
+    grade int,
+    FOREIGN KEY (fid) REFERENCES festival (fid), 
+    FOREIGN KEY (mid) REFERENCES memberinfo (mid)
+)
 
-![festa_db](festa_db.png)
